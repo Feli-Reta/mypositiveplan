@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Positive Plan</title>
+    <!-- Include styles generated or referenced by npm -->
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css"> <!-- Example path -->
+    <style>
+        .custom-navbar {
+            height: 100px;
+            background-color: rgb(12, 29, 107) !important; /* Use !important to ensure it takes priority */
+            z-index: 1050 !important; /* Set a higher z-index so it stays on top */
+            box-shadow: none !important; /* Remove shadow from the navbar */
+            position: relative;
+        }
+        .custom-offcanvas {
+            width: 200px; /* Adjust this value to make it narrower */
+        }                                                                                                                                                           
+        /* Style for the top half of the offcanvas */
+        .offcanvas-top-half {
+            background-color: #9ff0be; /* Replace with your desired top color */
+            color: white; /* Optional: Change text color for contrast */
+            padding: 20px; /* Add padding for better appearance */
+        }
+
+        /* Style for the bottom half of the offcanvas */
+        .offcanvas-bottom-half {
+            background-color: #379c8f; /* Replace with your desired bottom color */
+            color: black; /* Optional: Change text color for contrast */
+            flex-grow: 1; /* Allow this section to fill the remaining space */
+            padding: 20px; /* Add padding for better appearance */
+        }
+
+        /* Ensure the offcanvas fills the screen height */
+        .offcanvas {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .navbar-logo {
+        border-radius: 50%; /* Makes the image circular */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a shadow */
+        width: 40px; /* Keeps the size consistent */
+        height: 40px; /* Ensures the image stays circular */
+        object-fit: cover; /* Ensures the image scales nicely inside the circle */
+        }
+         /* Adjust the offcanvas to not overlap with the navbar */
+         .offcanvas-start {
+            z-index: 1045; /* Make sure the offcanvas stays behind the navbar */
+        }
+        .offcanvas-backdrop {
+            z-index: 1040 !important; /* Ensure backdrop is below the offcanvas */
+        }
+        .dropdown-menu {
+    background-color: transparent !important; /* Remove the white box */
+    border: none !important; /* Remove the border */
+  }
+
+  .dropdown-item {
+    color: #000; /* Adjust item text color if needed */
+  }
+
+  .dropdown-item:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Hover effect */
+  }
+  .hero-image {
+      background-image: url('https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Cambia esta URL por la imagen de tu preferencia */
+      background-size: cover;
+      background-position: center;
+      height: 50vh; /* 60% de la altura de la pantalla */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      color: white;
+    }
+
+    /* Estilo para el texto centrado */
+    .hero-text {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      z-index: 1;
+      color: #000;
+    }
+
+    /* Estilo para la barra de búsqueda */
+    .search-bar {
+      position: absolute;
+      bottom: 10px; /* Poner la barra de búsqueda justo en la parte inferior de la imagen */
+      width: 100%;
+    }
+    /* Nueva sección con espacio blanco */
+    .white-space {
+            margin-top: 10px;
+            padding: 1px 0;
+            background-color: white;
+            text-align: center;
+        }
+
+        /* Estilo para la sección con texto y botón */
+        .action-section {
+            background-color: #f0f7d6; /* Light blue background */
+            flex: 1;
+            text-align: center;
+            padding-bottom: 100vh;
+        }
+
+        /* Estilo para el botón */
+        .action-button {
+            border-radius: 25px;
+            border: 2px solid black;
+            background-color: #28a745; /* Green background */
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 30px;
+        }
+
+        .action-button:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+        html, body {
+            overflow-x: hidden;
+  margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+        }
+        .container-fluid {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .top-image {
+            background-image: url('https://images.unsplash.com/photo-1566554273541-37a9ca77b91f?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Replace with your image */
+        }
+        .bottom-image {
+            background-image: url('https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D  '); /* Replace with your image */
+        }
+        .image-container {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+}
+
+.overlay-top, .overlay-bottom {
+    position: absolute;
+    left: 0;
+    width: 100vw; /* Ensures full width */
+    height: 25vh;
+    background-color: rgba(0, 0, 255, 0.5);
+    color: white;
+    font-size: 2rem; /* Bigger font size */
+    font-weight: bold; /* Bold text */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay-top {
+    top: 0;
+}
+
+.overlay-bottom {
+    top: 25vh;
+}
+        .button-container {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+        }
+        .action-button {
+            background-color: rgba(0, 124, 128, 0.397);
+            color: white;
+            padding: 10px 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            margin-bottom: 50px;
+        }
+        .arrow {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 50px;
+        }  
+.action-content {
+    margin-top: 20px; /* Margin only applied to the content */
+}  
+    </style>
+</head>
+<body>
+    <nav class="custom-navbar navbar bg-body-tertiary fixed-top" style="height: 60px; display: flex; justify-content: center; align-items: center; position: relative;">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation" style="border: none; outline: none; box-shadow: none; border-radius: 90px; position: absolute; left: 15px;">
+                <img src="/images/Logo.png" alt="Logo" style="width: 40px;" class="navbar-logo"> <!-- Replace with your actual logo path -->
+            </button>
+            
+            <span class="navbar-brand mx-auto" style="color: white; font-size: 1.5rem; font-weight: bold;">Desafío de Chefs Jóvenes</span>
+    
+            <div class="offcanvas offcanvas-start custom-offcanvas" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style="width: 210px; margin-top: 60px;">
+                <!-- Top Half -->
+                <div class="offcanvas-top-half">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="font-weight: bold">Menú de navegación</h5>
+                </div>
+                <!-- Bottom Half -->
+                <div class="offcanvas-bottom-half">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/templates/retos.html">Retos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/templates/influencers.html">Influencers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/templates/nutricion.html">Nutrición</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/templates/historias.html">Historias</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href=" #" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Desafios
+                            </a>
+                            <ul class="dropdown-menu" style="font-size: 0.75rem;">                               
+                                <li><a class="dropdown-item" href="/templates/desafios/chef.html">Desafio Chefs Jovenes</a></li>
+                                <li><a class="dropdown-item" href="/templates/desafios/premios.html">Premios</a></li>
+                                <li><a class="dropdown-item" href="#">Más desafios proximamente...</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <main>
+        <body>
+            <div class="container-fluid">
+                <div class="image-container top-image"></div>
+                <div class="image-container bottom-image"></div>
+                <div class="overlay-top" style="margin-top: 10vh;">¡Prepara, cocina, conquista! Un concurso de cocina para adolescentes</div>
+                <div class="overlay-bottom" style="margin-top: 20vh;">¡Despierta el chef que llevas dentro! En este concurso, los adolescentes podrán mostrar sus habilidades culinarias más creativas y saludables</div>
+                <div class="arrow" style="margin-left: 9px;">&#8595;&#8595;&#8595;</div>
+                <div class="button-container">
+                    <a href="/templates/desafios/inscribirse.html" style="text-decoration: none;">
+                        <button class="action-button">Inscribite ahora</button>
+                    </a>
+                </div>
+            </div>
+        </body>
+    </main>
+    <footer>
+        <!-- Content goes here -->
+    </footer>
+    <!-- Include JavaScript bundle -->
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script> <!-- Example path -->
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
